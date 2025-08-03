@@ -48,16 +48,28 @@
     </div>
     <hr>
     <p>{{ powered }}</p>
-    <!--
-OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
-Please donate via PayPal to donate@opencart.com
-//-->
+  
   </div>
 </footer>
 </div>
 {{ cookie }}
-<script src="{{ bootstrap }}" type="text/javascript"></script>
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/lazysize.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/infinityslide.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/count-down.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
 {% for script in scripts %}
   <script src="{{ script.href }}" type="text/javascript"></script>
 {% endfor %}
+
+
+
 </body></html>
