@@ -327,9 +327,16 @@ $('#form-product').on('submit', function(e) {
             }
 
             if (json['success']) {
+                // ✅ Show success alert
                 $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-                $('#cart').load('index.php?route=common/cart.info&language={{ language }}');
+                // ✅ Load updated cart HTML into your offcanvas cart wrapper
+                $('.tf-mini-cart-wrap').load('index.php?route=common/cart.info&language={{ language }}', function() {
+                    // ✅ Once loaded, open the cart drawer
+                    var cartDrawer = new bootstrap.Offcanvas(document.getElementById('shoppingCart'));
+                    cartDrawer.show();
+                });
+                $(".count").text(json['count']);
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {

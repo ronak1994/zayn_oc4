@@ -1,0 +1,81 @@
+
+    
+
+        <div class="tf-mini-cart-main">
+          <div class="tf-mini-cart-sroll">
+            <div class="tf-mini-cart-items list-empty">
+              {% if products %}
+                {% for product in products %}
+                  <div class="tf-mini-cart-item file-delete">
+                    <div class="tf-mini-cart-image">
+                      {% if product.thumb %}
+                        <a href="{{ product.href }}">
+                          <img class="lazyload" src="{{ product.thumb }}" alt="{{ product.name }}">
+                        </a>
+                      {% endif %}
+                    </div>
+                    <div class="tf-mini-cart-info">
+                      <div class="text-small text-main-2 sub">{{ product.model }}</div>
+                      <h6 class="title">
+                        <a href="{{ product.href }}" class="link text-line-clamp-1">{{ product.name }}</a>
+                      </h6>
+                      <div class="size">
+                        {% for option in product.option %}
+                          <div class="text-small text-main-2 sub">{{ option.name }}: {{ option.value }}</div>
+                        {% endfor %}
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="h6 fw-semibold">
+                          <span class="number">{{ product.quantity }}x</span>
+                          <span class="price text-primary tf-mini-card-price">{{ product.total }}</span>
+                        </div>
+                        <form action="{{ remove }}" method="post" data-oc-toggle="ajax" data-oc-load="{{ list }}" data-oc-target=".tf-mini-cart-items">
+                          <input type="hidden" name="key" value="{{ product.cart_id }}">
+                          <button type="submit" class="icon link icon-close remove" title="{{ button_remove }}"></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="box-text_empty type-shop_cart">
+                  <div class="shop-empty_top">
+                    <span class="icon"><i class="icon-shopping-cart-simple"></i></span>
+                    <h3 class="text-emp fw-normal">{{ text_no_results }}</h3>
+                    <p class="h6 text-main">Let us assist you in finding the right product</p>
+                  </div>
+                  <div class="shop-empty_bot">
+                    <a href="{{ shop }}" class="tf-btn animate-btn">Shopping</a>
+                    <a href="{{ home }}" class="tf-btn style-line">Back to home</a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% if products %}
+          <div class="tf-mini-cart-bottom box-empty_clear">
+            <div class="tf-mini-cart-threshold">
+              <div class="text">
+                <h6 class="subtotal">Subtotal ({{ products|length }} item)</h6>
+                {% for total in totals %}
+                  {% if loop.last %}
+                    <h4 class="text-primary total-price tf-totals-total-value">{{ total.text }}</h4>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <!-- Optional: Add progress bar logic based on subtotal -->
+            </div>
+            <div class="tf-mini-cart-bottom-wrap">
+              <div class="tf-mini-cart-view-checkout">
+                <a href="{{ cart }}" class="tf-btn btn-white animate-btn animate-dark line">{{ text_cart }}</a>
+                <a href="{{ checkout }}" class="tf-btn animate-btn d-inline-flex bg-dark-2 w-100 justify-content-center">{{ text_checkout }}</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+       
+    
+ 

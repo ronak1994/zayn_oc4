@@ -1897,6 +1897,10 @@ header.header-sticky {
 .header-abs-3.header-sticky {
   background-color: var(--black);
 }
+
+#logo a img{
+  width: 100px;
+}
 @media (min-width: 1200px) {
   .header-abs-3 .header-top {
     padding-top: 16px;
@@ -20385,3 +20389,31 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 /*-------------- RTL ----------------- */
 
 /*# sourceMappingURL=styles.css.map */
+
+
+/****Customer CSS****/
+
+.header-row {
+  align-items: center; /* Vertically center all columns */
+  display: flex;
+}
+
+.header-row .col-md-4:first-child {
+  justify-content: flex-start;
+  display: flex;
+}
+
+.header-row .col-lg-4 {
+  justify-content: center;
+  display: flex;
+}
+
+.header-row .col-md-4:last-child {
+  justify-content: flex-end;
+  display: flex;
+}
+.item-link{
+  font-weight: 200;
+  font-size: 14px;
+  color: #333;
+}

@@ -286,7 +286,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 			$this->cart->add($product_id, $quantity, $option, $subscription_plan_id);
 
 			$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'language=' . $this->config->get('config_language') . '&product_id=' . $product_id), $product_info['name'], $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language')));
-
+			$json['count'] = $this->cart->countProducts();
 			// Unset all shipping and payment methods
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);

@@ -1,59 +1,101 @@
-<div class="dropdown d-grid">
-  <button type="button" data-bs-toggle="dropdown" class="btn btn-lg btn-dark d-block dropdown-toggle"><i class="fa-solid fa-cart-shopping"></i> {{ text_items }}</button>
-  <ul class="dropdown-menu dropdown-menu-end p-2">
-    {% if products %}
-      <li>
-        <table class="table table-striped mb-2">
-          {% for product in products %}
-            <tr>
-              <td class="text-center w-25">{% if product.thumb %}<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail"/></a>{% endif %}</td>
-              <td><a href="{{ product.href }}">{{ product.name }}</a>
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <small> - {{ text_model }}: {{ product.model }}</small>
-                  </li>
-                  {% for option in product.option %}
-                    <li>
-                      <small> - {{ option.name }}: {{ option.value }}</small>
-                    </li>
-                  {% endfor %}
-                  {% if product.subscription %}
-                    <li>
-                      <small> - {{ text_subscription }}: {{ product.subscription }}</small>
-                    </li>
-                  {% endif %}
-                  {% if product.reward %}
-                    <li>
-                      <small> - {{ text_points }}: {{ product.reward }}</small>
-                    </li>
-                  {% endif %}
-                </ul>
-              </td>
-              <td class="text-end text-nowrap">x {{ product.quantity }}</td>
-              <td class="text-end">{{ product.total }}</td>
-              <td class="text-end">
-                <form action="{{ remove }}" method="post" data-oc-toggle="ajax" data-oc-load="{{ list }}" data-oc-target="#cart">
-                  <input type="hidden" name="key" value="{{ product.cart_id }}">
-                  <button type="submit" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i></button>
-                </form>
-              </td>
-            </tr>
-          {% endfor %}
-        </table>
-        <div>
-          <table class="table table-sm table-bordered mb-2">
-            {% for total in totals %}
-              <tr>
-                <td class="text-end"><strong>{{ total.title }}</strong></td>
-                <td class="text-end">{{ total.text }}</td>
-              </tr>
-            {% endfor %}
-          </table>
-          <p class="text-end"><a href="{{ cart }}"><strong><i class="fa-solid fa-cart-shopping"></i> {{ text_cart }}</strong></a>&nbsp;&nbsp;&nbsp;<a href="{{ checkout }}"><strong><i class="fa-solid fa-share"></i> {{ text_checkout }}</strong></a></p>
+<style>
+    .popup-shopping-cart{
+      max-width: 605px;
+    }
+</style>
+<a class="nav-icon-item link" data-bs-toggle="offcanvas" href="#shoppingCart">
+                  <i class="icon icon-shopping-cart-simple"></i>
+                  </a>
+                  <span class="count">{{ text_items }}</span>
+
+
+<!-- Shopping Cart -->
+<div class="offcanvas offcanvas-end popup-shopping-cart" id="shoppingCart">
+  <div class="canvas-wrapper">
+    <div class="popup-header">
+      <span class="title fw-semibold h4">{{ heading_title }}</span>
+      <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas"></span>
+    </div>
+    <div class="wrap">
+      <div class="tf-mini-cart-wrap list-file-delete wrap-empty_text">
+        <div class="tf-mini-cart-main">
+          <div class="tf-mini-cart-sroll">
+            <div class="tf-mini-cart-items list-empty">
+              {% if products %}
+                {% for product in products %}
+                  <div class="tf-mini-cart-item file-delete">
+                    <div class="tf-mini-cart-image">
+                      {% if product.thumb %}
+                        <a href="{{ product.href }}">
+                          <img class="lazyload" src="{{ product.thumb }}" alt="{{ product.name }}">
+                        </a>
+                      {% endif %}
+                    </div>
+                    <div class="tf-mini-cart-info">
+                      <div class="text-small text-main-2 sub">{{ product.model }}</div>
+                      <h6 class="title">
+                        <a href="{{ product.href }}" class="link text-line-clamp-1">{{ product.name }}</a>
+                      </h6>
+                      <div class="size">
+                        {% for option in product.option %}
+                          <div class="text-small text-main-2 sub">{{ option.name }}: {{ option.value }}</div>
+                        {% endfor %}
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="h6 fw-semibold">
+                          <span class="number">{{ product.quantity }}x</span>
+                          <span class="price text-primary tf-mini-card-price">{{ product.total }}</span>
+                        </div>
+                        <form action="{{ remove }}" method="post" data-oc-toggle="ajax" data-oc-load="{{ list }}" data-oc-target=".tf-mini-cart-items">
+                          <input type="hidden" name="key" value="{{ product.cart_id }}">
+                          <button type="submit" class="icon link icon-close remove" title="{{ button_remove }}"></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="box-text_empty type-shop_cart">
+                  <div class="shop-empty_top">
+                    <span class="icon"><i class="icon-shopping-cart-simple"></i></span>
+                    <h3 class="text-emp fw-normal">{{ text_no_results }}</h3>
+                    <p class="h6 text-main">Let us assist you in finding the right product</p>
+                  </div>
+                  <div class="shop-empty_bot">
+                    <a href="{{ shop }}" class="tf-btn animate-btn">Shopping</a>
+                    <a href="{{ home }}" class="tf-btn style-line">Back to home</a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
         </div>
-      </li>
-    {% else %}
-      <li class="text-center p-4">{{ text_no_results }}</li>
-    {% endif %}
-  </ul>
+
+        {% if products %}
+          <div class="tf-mini-cart-bottom box-empty_clear">
+            <div class="tf-mini-cart-threshold">
+              <div class="text">
+                <h6 class="subtotal">Subtotal ({{ products|length }} item)</h6>
+                {% for total in totals %}
+                  {% if loop.last %}
+                    <h4 class="text-primary total-price tf-totals-total-value">{{ total.text }}</h4>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <!-- Optional: Add progress bar logic based on subtotal -->
+            </div>
+            <div class="tf-mini-cart-bottom-wrap">
+              <div class="tf-mini-cart-view-checkout">
+                <a href="{{ cart }}" class="tf-btn btn-white animate-btn animate-dark line">{{ text_cart }}</a>
+                <a href="{{ checkout }}" class="tf-btn animate-btn d-inline-flex bg-dark-2 w-100 justify-content-center">{{ text_checkout }}</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Optional addons like shipping estimator, note, gift UI remain static or can be wired up later -->
+      </div>
+    </div>
+  </div>
 </div>
+<!-- /Shopping Cart -->

@@ -46,61 +46,164 @@
 
 
 <body>
+ <!-- Scroll Top -->
+ <button id="goTop">
+        <span class="border-progress"></span>
+        <span class="icon icon-caret-up"></span>
+    </button>
+
+    <!-- preload -->
+    <div class="preload preload-container" id="preload">
+        <div class="preload-logo">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <!-- /preload -->
+
+<main id="wrapper">   
 <div id="container">
-  <div id="alert"></div>
-  <nav id="top">
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <ul class="list-inline">
-            <li class="list-inline-item me-3">{{ currency }}</li>
-            <li class="list-inline-item">{{ language }}</li>
-          </ul>
-        </div>
-        <div class="col text-end">
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="{{ contact }}"><i class="fa-solid fa-phone"></i> <span class="d-none d-lg-inline">{{ telephone }}</span></a></li>
-            <li class="list-inline-item">
-              <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user"></i> <span class="d-none d-lg-inline">{{ text_account }}</span> <i class="fa-solid fa-caret-down"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  {% if not logged %}
-                    <li><a href="{{ register }}" class="dropdown-item">{{ text_register }}</a></li>
-                    <li><a href="{{ login }}" class="dropdown-item">{{ text_login }}</a></li>
+<header>
+   <div class="container">
+      <div class="row header-row">
+         <div class="col-md-4">
+            <nav class="box-navigation">
+               <ul class="box-nav-menu">
+                  <li class="menu-item">
+                     <a href="#" class="item-link">SHOP</a>
+                     <div class="sub-menu mega-menu">
+                        <div class="container">
+                           <div class="row">
+                              <div class="col-2">
+                                 <div class="mega-menu-item">
+                                    <h4 class="menu-heading">Shop Layout</h4>
+                                    <ul class="sub-menu_list">
+                                       <li><a href="shop-default.html" class="sub-menu_link">Default Grid</a></li>
+                                       <li><a href="shop-default-list.html" class="sub-menu_link">Default List</a></li>
+                                       <li><a href="shop-2-columns.html" class="sub-menu_link">Shop 2 Columns</a></li>
+                                       <li><a href="shop-3-columns.html" class="sub-menu_link">Shop 3 Columns</a></li>
+                                       <li><a href="shop-4-columns.html" class="sub-menu_link">Shop 4 Columns</a></li>
+                                       <li><a href="shop-5-columns.html" class="sub-menu_link">Shop 5 Columns</a></li>
+                                       <li><a href="shop-6-columns.html" class="sub-menu_link">Shop 6 Columns</a></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="col-2">
+                                 <div class="mega-menu-item">
+                                    <h4 class="menu-heading">Shop Features</h4>
+                                    <ul class="sub-menu_list">
+                                       <li><a href="shop-full-width-list.html" class="sub-menu_link">Full Width List</a></li>
+                                       <li><a href="shop-full-width-grid.html" class="sub-menu_link">Full Width Grid</a></li>
+                                       <li><a href="shop-left-sidebar.html" class="sub-menu_link">Left Sidebar</a></li>
+                                       <li><a href="shop-right-sidebar.html" class="sub-menu_link">Right Sidebar</a></li>
+                                       <li><a href="shop-filter-dropdown.html" class="sub-menu_link">Filter Dropdown</a></li>
+                                       <li><a href="shop-filter-drawer.html" class="sub-menu_link">Filter Drawer</a></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="col-2">
+                                 <div class="mega-menu-item">
+                                    <h4 class="menu-heading">Shop Hover</h4>
+                                    <ul class="sub-menu_list">
+                                       <li><a href="shop-hover-01.html" class="sub-menu_link">Hover Style 01</a></li>
+                                       <li><a href="shop-hover-02.html" class="sub-menu_link">Hover Style 02</a></li>
+                                       <li><a href="shop-hover-03.html" class="sub-menu_link">Hover Style 03</a></li>
+                                       <li><a href="shop-hover-04.html" class="sub-menu_link">Hover Style 04</a></li>
+                                       <li><a href="shop-hover-05.html" class="sub-menu_link">Hover Style 05</a></li>
+                                       <li><a href="shop-hover-06.html" class="sub-menu_link">Hover Style 06</a></li>
+                                       <li><a href="shop-hover-07.html" class="sub-menu_link">Hover Style 07</a></li>
+                                       <li><a href="shop-hover-08.html" class="sub-menu_link">Hover Style 08</a></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="col-6">
+                                 <ul class="list-hor">
+                                    <li class="wg-cls hover-img">
+                                       <a href="shop-default.html" class="image img-style">
+                                       <img src="images/collections/cls-header-1.jpg"
+                                          data-src="images/collections/cls-header-1.jpg" alt="Collection" class="lazyload">
+                                       </a>
+                                       <div class="cls-content">
+                                          <h4 class="tag_cls">Men</h4>
+                                          <span class="br-line type-vertical"></span>
+                                          <a href="shop-default.html" class="tf-btn-line"> Shop now </a>
+                                       </div>
+                                    </li>
+                                    <li class="wg-cls hover-img">
+                                       <a href="shop-default.html" class="image img-style">
+                                       <img src="images/collections/cls-header-2.jpg"
+                                          data-src="images/collections/cls-header-2.jpg" alt="Collection" class="lazyload">
+                                       </a>
+                                       <div class="cls-content">
+                                          <h4 class="tag_cls">Women</h4>
+                                          <span class="br-line type-vertical"></span>
+                                          <a href="shop-default.html" class="tf-btn-line"> Shop now </a>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menu-item position-relative">
+                     <a href="#" class="item-link">CATALOG<i class="icon icon-caret-down"></i></a>
+                     <div class="sub-menu">
+                        <ul class="sub-menu_list">
+                           <li><a href="about-us.html" class="sub-menu_link">About us</a></li>
+                           <li><a href="store-list.html" class="sub-menu_link">Store List</a></li>
+                           <li><a href="404.html" class="sub-menu_link">404</a></li>
+                           <li><a href="faq.html" class="sub-menu_link">FAQs</a></li>
+                           <li><a href="track-order.html" class="sub-menu_link">Order Tracking</a></li>
+                           <li><a href="invoice.html" class="sub-menu_link">Invoice</a></li>
+                           <li><a href="account-page.html" class="sub-menu_link">My account</a></li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="menu-item position-relative">
+                     <a href="#" class="item-link">ABOUT</a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <div class="col-lg-4">
+            <div id="logo" class="text-center">
+               {% if logo %}
+               <a href="{{ home }}">
+               <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-fluid"/>
+               </a>
+               {% else %}
+               <h1><a href="{{ home }}">{{ name }}</a></h1>
+               {% endif %}
+            </div>
+         </div>
+         <div class="col-md-4">
+            <ul class="nav-icon-list">
+               <li class="d-none d-lg-flex">
+               {% if not logged %}
+                  <a class="nav-icon-item link" href="index.php?route=account/login"><i class="icon icon-user"></i></a>
                   {% else %}
-                    <li><a href="{{ account }}" class="dropdown-item">{{ text_account }}</a></li>
-                    <li><a href="{{ order }}" class="dropdown-item">{{ text_order }}</a></li>
-                    <li><a href="{{ transaction }}" class="dropdown-item">{{ text_transaction }}</a></li>
-                    <li><a href="{{ download }}" class="dropdown-item">{{ text_download }}</a></li>
-                    <li><a href="{{ logout }}" class="dropdown-item">{{ text_logout }}</a></li>
+                  <a class="nav-icon-item link" href="index.php?route=account/account"><i class="icon icon-user"></i></a>
                   {% endif %}
-                </ul>
-              </div>
-            </li>
-            <li class="list-inline-item"><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa-solid fa-heart"></i> <span class="d-none d-lg-inline">{{ text_wishlist }}</span></a></li>
-            <li class="list-inline-item"><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa-solid fa-cart-shopping"></i> <span class="d-none d-lg-inline">{{ text_shopping_cart }}</span></a></li>
-            <li class="list-inline-item"><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa-solid fa-share"></i> <span class="d-none d-lg-inline">{{ text_checkout }}</span></a></li>
-          </ul>
-        </div>
+               </li>
+               <li class="d-none d-md-flex">
+                 {{ search }}
+               </li>
+               <li class="d-none d-sm-flex">
+                 {% if not logged %}
+                  <a class="nav-icon-item link" href="index.php?route=common/wishlist"><i class="icon icon-heart"></i></a>
+                  <span class="wishlit-count">0</span>
+                  {% else %}
+                  <a class="nav-icon-item link" href="index.php?route=account/wishlist"><i class="icon icon-heart"></i></a>
+                  <span class="wishlit-count">0</span>
+                  {% endif %}
+                </li>
+               <li class="shop-cart"  data-bs-target="#shoppingCart">
+                 {{ cart }}
+               </li>
+            </ul>
+         </div>
       </div>
-    </div>
-  </nav>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-lg-4">
-          <div id="logo">
-            {% if logo %}
-              <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-fluid"/></a>
-            {% else %}
-              <h1><a href="{{ home }}">{{ name }}</a></h1>
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-5">{{ search }}</div>
-        <div id="cart" class="col-md-4 col-lg-3 mb-2">{{ cart }}</div>
-      </div>
-    </div>
-  </header>
+   </div>
+</header>
   <main>
-    {{ menu }}
+  
