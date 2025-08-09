@@ -1,56 +1,5 @@
 </main>
-<footer style="display: none;">
-  <div class="container">
-    <div class="row">
-      {% if informations or blog %}
-        <div class="col-sm-3">
-          <h5>{{ text_information }}</h5>
-          <ul class="list-unstyled">
-            {% if blog %}
-              <li><a href="{{ blog }}">{{ text_blog }}</a></li>
-            {% endif %}
-            {% for information in informations %}
-              <li><a href="{{ information.href }}">{{ information.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-      <div class="col-sm-3">
-        <h5>{{ text_service }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
-          <li><a href="{{ return }}">{{ text_return }}</a></li>
-          {% if gdpr %}
-            <li><a href="{{ gdpr }}">{{ text_gdpr }}</a></li>
-          {% endif %}
-          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5>{{ text_extra }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
-          {% if affiliate %}
-            <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
-          {% endif %}
-          <li><a href="{{ special }}">{{ text_special }}</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5>{{ text_account }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ account }}">{{ text_account }}</a></li>
-          <li><a href="{{ order }}">{{ text_order }}</a></li>
-          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
-          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr>
-    <p>{{ powered }}</p>
-  
-  </div>
-</footer>
+
 
  <!-- Footer -->
  <footer  class="tf-footer style-4">
@@ -104,9 +53,9 @@
                                 <p class="footer-heading footer-heading-mobile">Useful Links</p>
                                 <div class="tf-collapse-content">
                                     <ul class="footer-menu-list">
-                                        <li><a href="faq.html" class="link h6">CAD/CAM Services</a></li>
-                                        <li><a href="shop-default.html" class="link h6">Retail Locations</a></li>
-                                        <li><a href="track-order.html" class="link h6">Education
+                                        <li><a href="index.php?route=common/cad" class="link h6">CAD/CAM Services</a></li>
+                                        <li><a href="index.php?route=common/locations" class="link h6">Retail Locations</a></li>
+                                        <li><a href="index.php?route=common/education" class="link h6">Education
                                         </a></li>
                                         
                                     </ul>
@@ -118,9 +67,9 @@
                                 <p class="footer-heading footer-heading-mobile">Information</p>
                                 <div class="tf-collapse-content">
                                     <ul class="footer-menu-list">
-                                        <li><a href="about-us.html" class="link h6">About Us</a></li>
-                                        <li><a href="faq.html" class="link h6">Privacy Policy</a></li>
-                                        <li><a href="faq.html" class="link h6">Contact Us</a></li>
+                                        <li><a href="index.php?route=common/aboutus" class="link h6">About Us</a></li>
+                                        <li><a href="index.php?route=information/information&information_id=3" class="link h6">Privacy Policy</a></li>
+                                        <li><a href="index.php?route=information/contact" class="link h6">Contact Us</a></li>
                                      </ul>
                                 </div>
                             </div>
