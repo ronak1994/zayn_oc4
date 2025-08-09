@@ -79,7 +79,11 @@
           {% endif %}
           <form method="post" data-oc-toggle="ajax">
             <div class="btn-group">
-              <button type="submit" formaction="{{ wishlist_add }}" data-bs-toggle="tooltip" class="btn btn-light btn-lg" title="{{ button_wishlist }}"><i class="fa-solid fa-heart"></i></button>
+            {% if not logged %}
+              <button  class="btn btn-light btn-lg offline-wishlist" title="{{ button_wishlist }}">wishlist off</button>
+            {% else %}
+              <button type="submit" formaction="{{ wishlist_add }}" data-bs-toggle="tooltip" class="btn btn-light btn-lg" title="{{ button_wishlist }}">wishlist</button>
+            {% endif %}
               <button type="submit" formaction="{{ compare_add }}" data-bs-toggle="tooltip" class="btn btn-light btn-lg" title="{{ button_compare }}"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
             </div>
             <input type="hidden" name="product_id" value="{{ product_id }}"/>
@@ -354,5 +358,28 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).on('click', '.offline-wishlist', function (e) {
+    e.preventDefault();
+
+    // Get the product ID
+    const productId = $('#input-product-id').val();
+
+    // Get existing wishlist from localStorage or initialize it
+    let wishlist = JSON.parse(localStorage.getItem('offline_wishlist')) || [];
+
+    // Add only if not already in wishlist
+    if (!wishlist.includes(productId)) {
+        wishlist.push(productId);
+        localStorage.setItem('offline_wishlist', JSON.stringify(wishlist));
+        $('.wishlist-count').text(JSON.parse(localStorage.getItem('offline_wishlist'))?.length || 0);
+
+    } else {
+        alert('Product already in your offline wishlist.');
+    }
+});
+
+
+
 //--></script>
 {{ footer }}

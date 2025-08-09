@@ -22,6 +22,10 @@ function getURLVar(key) {
     }
 }
 
+$(document).ready(function() {
+    $('.wishlist-count').text(JSON.parse(localStorage.getItem('offline_wishlist'))?.length || 0);
+});
+
 // Observe
 +function($) {
     $.fn.observe = function(callback) {
