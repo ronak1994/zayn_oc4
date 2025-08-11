@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.twig": "php"
+    },
+    "emmet.includeLanguages": {
+        "twig": "html"
+    },
+    "files.autoGuessEncoding": true,
+    "php.validate.enable": true,
+    "php.suggest.basic": true
+}

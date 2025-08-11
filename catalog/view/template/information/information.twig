@@ -1,14 +1,38 @@
 {{ header }}
-<div id="information-information" class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %}
-    <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %}
-  </ul>
-  <div class="row">{{ column_left }}
-    <div id="content" class="col">{{ content_top }}
-      <h1>{{ heading_title }}</h1>
-      {{ description }}{{ content_bottom }}</div>
-    {{ column_right }}</div>
-</div>
+<style>
+  p {
+   line-height: 2.5;
+   font-size: 18px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+</style>
+<!-- Page Title -->
+<section class="s-page-title">
+            <div class="container">
+                <div class="content">
+                    <h1 class="title-page">{{ heading_title }}</h1>
+                </div>
+            </div>
+        </section>
+        <section class="">
+          <br />
+          <div class="container">
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <div class="left-col mb-lg-0">
+                    {{ description }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+       <br />
+       
 {{ footer }}

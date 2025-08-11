@@ -834,43 +834,7 @@
 
     /* Delete Wishlist
     ----------------------------------------------------------------------------*/
-    var deleteWishList = function () {
-        function checkEmpty() {
-            var $wishlistInner = $(".wrapper-wishlist");
-            var $product = $(".wrapper-wishlist .card-product");
-            var productCount = $(".wrapper-wishlist .card-product").length;
-
-            if (productCount <= 12) {
-                $(".wrapper-wishlist .wd-full").hide();
-                $product.css("display", "flex");
-            } else {
-                $(".wrapper-wishlist .wd-full").show();
-                $product.slice(0, 12).css("display", "flex");
-                $product.slice(12).hide();
-            }
-
-            if (productCount === 0) {
-                $wishlistInner.append(`
-          <div class="tf-wishlist-empty text-center">
-            <p class="text-notice">NO PRODUCTS WERE ADDED TO THE WISHLIST.</p>
-            <a href="index.html" class="tf-btn animate-btn btn-fill btn-back-shop">BACK TO SHOPPING</a>
-          </div>
-        `);
-            } else {
-                $wishlistInner.find(".tf-compare-empty").remove();
-            }
-        }
-
-        $(".wrapper-wishlist .card-product .remove").on("click", function (e) {
-            e.preventDefault();
-            var $this = $(this);
-            $this.closest(".card-product").remove();
-            checkEmpty();
-        });
-
-        checkEmpty();
-    };
-
+  
     /* Click Active 
     -------------------------------------------------------------------------*/
     var clickActive = function () {
@@ -1361,7 +1325,6 @@
         dropdownSelect();
         btnQuantity();
         deleteFile();
-        deleteWishList();
         goTop();
         variantPicker();
         changeValue();
@@ -1400,3 +1363,8 @@
         preloader();
     });
 })(jQuery);
+
+
+//custom js
+
+
