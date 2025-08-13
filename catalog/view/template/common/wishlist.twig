@@ -20,16 +20,6 @@
             <div class="container">
                 <div class="tf-grid-layout tf-col-2 md-col-3 xl-col-4 wrapper-wishlist">
                   
-                 
-                
-                
-                <!-- Pagination -->
-                    
-                
-                
-
-                
-                  
                 </div>
             </div>
         </div>
@@ -42,18 +32,18 @@
 
     <script>
         $(document).ready(function() {
-           console.log(localStorage.getItem('offline_wishlist'));
            
            // Get offline wishlist product IDs
            const offlineWishlist = JSON.parse(localStorage.getItem('offline_wishlist') || '[]');
-           console.log('Offline wishlist:', offlineWishlist);
            
-                      // Render products from offline wishlist
-           if (offlineWishlist.length > 0) {
+        
+        // Render products from offline wishlist
+         if (offlineWishlist.length > 0) {
                offlineWishlist.forEach(productId => {
                    fetch(`index.php?route=common/wishlist.getProduct&product_id=${productId}`)
                        .then(response => response.json())
                        .then(data => {
+                            console.log(data)
                            if (data.success) {
                                const product = data.data;
                                console.log(product);
@@ -79,34 +69,14 @@
                                        <div class="card-product_info">
                                            <a href="index.php?route=product/product&product_id=${product.product_id}" class="name-product h4 link">${product.name}</a>
                                            <div class="price-wrap">
-                                               <span class="price-old h6 fw-normal">$${product.price || '109.99'}</span>
-                                               <span class="price-new h6">$${product.special || product.price || '74.99'}</span>
+                                               <span class="price-new h6 fw-normal">Price : $${product.price || '109.99'}</span>
                                            </div>
-                                           <ul class="product-color_list">
-                                               ${product.color_options && product.color_options.length > 0 ? 
-                                                   product.color_options.map((color, index) => `
-                                                       <li class="product-color-item color-swatch hover-tooltip tooltip-bot ${index === 0 ? 'active' : ''}">
-                                                           <span class="tooltip color-filter">${color.name}</span>
-                                                           <span class="swatch-value bg-hot-pink"></span>
-                                                           ${color.thumb ? 
-                                                               `<img class="lazyload" src="${color.thumb}" data-src="${color.thumb}" alt="${color.name}">` : 
-                                                               `<img class="lazyload" src="${product.thumb || 'assets/images/products/product-7.jpg'}" data-src="${product.thumb || 'assets/images/products/product-7.jpg'}" alt="${color.name}">`
-                                                           }
-                                                       </li>
-                                                   `).join('') 
-                                                   : 
-                                                   `<li class="product-color-item color-swatch hover-tooltip tooltip-bot active">
-                                                       <span class="tooltip color-filter">Default</span>
-                                                       <span class="swatch-value bg-hot-pink"></span>
-                                                       <img class="lazyload" src="${product.thumb || 'assets/images/products/product-7.jpg'}" data-src="${product.thumb || 'assets/images/products/product-7.jpg'}" alt="${product.name}">
-                                                   </li>`
-                                               }
-                                           </ul>
-                                       </div>
+                                          </div>
                                    </div>
                                `;
+                               console.log(productHtml);
                                // Insert into the main grid container instead of separate wishlist-products div
-                               document.querySelector('.wrapper-wishlist').insertAdjacentHTML('beforeend', productHtml);
+                              $('.wrapper-wishlist').html(productHtml);
                            }
                        })
                        .catch(error => {
@@ -124,7 +94,7 @@
            }
          });
          
-                  // Function to open quick view for a specific product
+         // Function to open quick view for a specific product
          function openQuickView(productId) {
              // Fetch product data for quick view
              fetch(`index.php?route=common/wishlist.getProduct&product_id=${productId}`)

@@ -229,7 +229,7 @@ class Category extends \Opencart\System\Engine\Controller {
 			];
 
 			$results = $this->model_catalog_product->getProducts($filter_data);
-
+		
 			foreach ($results as $result) {
 				$description = trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')));
 
@@ -273,6 +273,8 @@ class Category extends \Opencart\System\Engine\Controller {
 
 				$data['products'][] = $this->load->controller('product/thumb', $product_data);
 			}
+
+			
 
 			$url = '';
 

@@ -183,9 +183,14 @@
 .icon-power-strip:before {
     content: "\e99c";
 }
-.icon-instagram-logo:before {
-    content: "\e90b";
-}
+    .icon-instagram-logo:before {
+        content: "\e90b";
+    }
+
+    .icon-youtube-logo:before {
+        content: "\ea9d";
+    }
+    
 .icon-trash:before {
     content: "\e967";
 }

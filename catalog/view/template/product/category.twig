@@ -1,110 +1,266 @@
 {{ header }}
-<div id="product-category" class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %}
-      <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %}
-  </ul>
-  <div class="row">{{ column_left }}
-    <div id="content" class="col">{{ content_top }}
-      <h1>{{ heading_title }}</h1>
-      {% if image or description %}
-        <div class="row">
-          {% if image %}
-            <div class="col-3"><img src="{{ image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail"/></div>
-          {% endif %}
-          {% if description %}
-            <div class="col-9">{{ description }}</div>
-          {% endif %}
-        </div>
-        <hr/>
-      {% endif %}
 
-      {% if categories %}
-        <h3>{{ text_refine }}</h3>
-        {% if categories|length <= 5 %}
-          <div class="row">
-            <div class="col-sm-3">
-              <ul>
-                {% for category in categories %}
-                  <li><a href="{{ category.href }}">{{ category.name }}</a></li>
-                {% endfor %}
-              </ul>
+<style>
+  .tf-shop-control{
+    margin-bottom: 0px;
+  }
+</style>
+  <!-- Page Title -->
+  <section class="s-page-title">
+            <div class="container">
+                <div class="content">
+                    <h1 class="title-page">{{ heading_title }}</h1>
+                    <ul class="breadcrumbs-page">
+                    <li><a href="/" class="h6 link">Home</a></li>
+                        <li class="d-flex"><i class="icon icon-caret-right"></i></li>
+                        <li>
+                            <h6 class="current-page fw-normal">{{ heading_title }}</h6>
+                        </li>
+                  </ul>
+                </div>
             </div>
-          </div>
-        {% else %}
-          <div class="row row-cols-sm-2 row-cols-lg-4">
-            {% set total = category.children|length %}
-            {% if total > 20 %}
-              {% set batch = (total / 4)|round(0, 'ceil') %}
-            {% else %}
-              {% set batch = 5 %}
-            {% endif %}
-            {% for category in categories|batch(batch) %}
-              <div class="col">
-                <ul>
-                  {% for child in category %}
-                    <li><a href="{{ child.href }}">{{ child.name }}</a></li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endfor %}
-          </div>
-          <br/>
-        {% endif %}
-      {% endif %}
+        </section>
+        <!-- /Page Title -->
+        
+        <!-- Section Product -->
+        <div class=" pt-5">
+            <div class="container">
+                <div class="tf-shop-control">
+                    <div class="tf-control-filter">
+                        <a href="#filterShop" data-bs-toggle="offcanvas" aria-controls="filterShop" class="tf-btn-filter">
+                            <span class="icon icon-filter"></span><span class="text">Filter</span></a>
+                    </div>
+                  
+                    <div class="tf-control-sorting">
+                        <p class="h6 d-none d-lg-block">Sort by:</p>
+                        <div class="tf-dropdown-sort" data-bs-toggle="dropdown">
+                            <div class="btn-select">
+                                <span class="text-sort-value">Best Selling</span>
+                                <span class="icon icon-caret-down"></span>
+                            </div>
+                            <div class="dropdown-menu">
+                                <div class="select-item active remove-all-filters" data-sort-value="best-selling">
+                                    <span class="text-value-item">Best Selling</span>
+                                </div>
+                                <div class="select-item" data-sort-value="a-z">
+                                    <span class="text-value-item">Alphabetically, A-Z</span>
+                                </div>
+                                <div class="select-item" data-sort-value="z-a">
+                                    <span class="text-value-item">Alphabetically, Z-A</span>
+                                </div>
+                                <div class="select-item" data-sort-value="price-low-high">
+                                    <span class="text-value-item">Price, low to high</span>
+                                </div>
+                                <div class="select-item" data-sort-value="price-high-low">
+                                    <span class="text-value-item">Price, high to low</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper-control-shop gridLayout-wrapper">
+                    <div class="meta-filter-shop">
+                        <div id="product-count-grid" class="count-text"></div>
+                        <div id="product-count-list" class="count-text"></div>
+                        <div id="applied-filters"></div>
+                        <button id="remove-all" class="remove-all-filters" style="display: none;"><i class="icon icon-close"></i> Clear all</button>
+                    </div>
+                  
+                    <div class="wrapper-shop tf-grid-layout tf-col-4" id="gridLayout">
+                    {% if products %}
 
-      {% if products %}
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="mb-3">
-              <a href="{{ compare }}" id="compare-total" class="btn btn-primary d-block"><i class="fa-solid fa-arrow-right-arrow-left"></i> <span class="d-none d-xl-inline">{{ text_compare }}</span></a>
+                    {% for product in products %}
+                    {{ product }}
+                    {% endfor %}                              
+                    
+                    {% endif %}
+                    {% if not categories and not products %}
+                    <p>No products found</p>
+                    <div class="text-end"><a href="{{ continue }}" class="btn btn-primary">Continue</a></div>
+                    {% endif %}
+                   
+                    <br />
+                    <!-- Pagination -->
+                        <div class="wd-full wg-pagination m-0 justify-content-center">
+                            <a href="#" class="pagination-item h6 direct"><i class="icon icon-caret-left"></i></a>
+                            <a href="#" class="pagination-item h6">1</a>
+                            <span class="pagination-item h6 active">2</span>
+                            <a href="#" class="pagination-item h6">3</a>
+                            <a href="#" class="pagination-item h6">4</a>
+                            <a href="#" class="pagination-item h6">5</a>
+                            <a href="#" class="pagination-item h6 direct"><i class="icon icon-caret-right"></i></a>
+                        </div>
+                        <br />
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-1 d-none d-lg-block">
-            <div class="btn-group">
-              <button type="button" id="button-list" class="btn btn-light" data-bs-toggle="tooltip" title="{{ button_list }}"><i class="fa-solid fa-table-list"></i></button>
-              <button type="button" id="button-grid" class="btn btn-light" data-bs-toggle="tooltip" title="{{ button_grid }}"><i class="fa-solid fa-table-cells"></i></button>
-            </div>
-          </div>
-          <div class="col-lg-4 offset-lg-1 col-6">
-            <div class="input-group mb-3">
-              <label for="input-sort" class="input-group-text">{{ text_sort }}</label>
-              <select id="input-sort" class="form-select" onchange="location = this.value;">
-                {% for sorts in sorts %}
-                  <option value="{{ sorts.href }}"{% if sorts.value == '%s-%s'|format(sort, order) %} selected{% endif %}>{{ sorts.text }}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <div class="input-group mb-3">
-              <label for="input-limit" class="input-group-text">{{ text_limit }}</label>
-              <select id="input-limit" class="form-select" onchange="location = this.value;">
-                {% for limits in limits %}
-                  <option value="{{ limits.href }}"{% if limits.value == limit %} selected{% endif %}>{{ limits.text }}</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
         </div>
+        <!-- /Section Product -->  
+    
+        <!-- Filter Shop -->
+    <div class="offcanvas offcanvas-start canvas-filter" id="filterShop">
+        <div class="canvas-wrapper">
+            <div class="canvas-header">
+                <span class="title h3 fw-medium">Filter</span>
+                <span class="icon-close link icon-close-popup fs-24" data-bs-dismiss="offcanvas"></span>
+            </div>
+            <div class="canvas-body">
+               
+                <div class="widget-facet">
+                    <div class="facet-title" data-bs-target="#availability" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                        aria-controls="availability">
+                        <span class="h4 fw-semibold">Availability</span>
+                        <span class="icon icon-caret-down fs-20"></span>
+                    </div>
+                    <div id="availability" class="collapse show">
+                        <ul class="collapse-body filter-group-check current-scrollbar">
+                            <li class="list-item">
+                                <input type="radio" name="availability" class="tf-check" id="inStock">
+                                <label for="inStock" class="label">
+                                    <span>In Stock</span><span class="count">23</span>
+                                </label>
+                            </li>
+                            <li class="list-item disabled">
+                                <input type="radio" name="availability" class="tf-check" id="outStock">
+                                <label for="outStock" class="label">
+                                    <span>Out of Stock</span><span class="count">34</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              
+                <div class="widget-facet">
+                    <div class="facet-title" data-bs-target="#brand" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                        aria-controls="brand">
+                        <span class="h4 fw-semibold">Metal Type</span>
+                        <span class="icon icon-caret-down fs-20"></span>
+                    </div>
+                    <div id="brand" class="collapse show">
+                        <ul class="collapse-body filter-group-check current-scrollbar">
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="automet">
+                                <label for="automet" class="label">AUTOMET</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="trendy-queen">
+                                <label for="trendy-queen" class="label">Trendy Queen</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="wiholl">
+                                <label for="wiholl" class="label">WIHOLL</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="real-essentials">
+                                <label for="real-essentials" class="label">Real Essentials</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="dokotoo">
+                                <label for="dokotoo" class="label">Dokotoo</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="hanes">
+                                <label for="hanes" class="label">Hanes</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="zeagoo">
+                                <label for="zeagoo" class="label">Zeagoo</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="shewin">
+                                <label for="shewin" class="label">SHEWIN</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="blooming-jelly">
+                                <label for="blooming-jelly" class="label">Blooming Jelly</label>
+                            </li>
+                            <li class="list-item">
+                                <input type="checkbox" name="brand" class="tf-check" id="fisoew">
+                                <label for="fisoew" class="label">Fisoew</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div id="product-list" class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">
-          {% for product in products %}
-            <div class="col mb-3">{{ product }}</div>
-          {% endfor %}
+                <div class="widget-facet">
+                    <div class="facet-title" data-bs-target="#size" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="size">
+                        <span class="h4 fw-semibold">Size</span>
+                        <span class="icon icon-caret-down fs-20"></span>
+                    </div>
+                    <div id="size" class="collapse show">
+                        <div class="collapse-body filter-size-box flat-check-list">
+                            <div class="check-item size-item size-check"><span class="size h6">XS</span></div>
+                            <div class="check-item size-item size-check"><span class="size h6">S</span></div>
+                            <div class="check-item size-item size-check"><span class="size h6">L</span></div>
+                            <div class="check-item size-item size-check"><span class="size h6">M</span></div>
+                            <div class="check-item size-item size-check"><span class="size h6">XL</span></div>
+                            <div class="check-item size-item size-check"><span class="size h6">2XL</span></div>
+                            <div class="check-item size-item size-check over-size"><span class="size h6">Over size</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-facet">
+                    <div class="facet-title" data-bs-target="#color" role="button" data-bs-toggle="collapse" aria-expanded="true"
+                        aria-controls="size">
+                        <span class="h4 fw-semibold">Color</span>
+                        <span class="icon icon-caret-down fs-20"></span>
+                    </div>
+                    <div id="color" class="collapse show">
+                        <div class="collapse-body filter-color-box flat-check-list">
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-light-purple"></span>
+                                <span class="color-text">Purple</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-dark-charcoal"></span>
+                                <span class="color-text">Dark</span>
+                            </div>
+                            <div class="check-item color-item color-check line">
+                                <span class="color bg-dark-jade"></span>
+                                <span class="color-text">Green</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-light-beige"></span>
+                                <span class="color-text">Beige</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-sage-green"></span>
+                                <span class="color-text">Sage Green</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-tomato"></span>
+                                <span class="color-text">Light Orange</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-honey-orange"></span>
+                                <span class="color-text">Orange</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-dark-olive"></span>
+                                <span class="color-text">Dark Olive</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-hot-pink"></span>
+                                <span class="color-text">Pink</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-muted-violet"></span>
+                                <span class="color-text">Dark Violet</span>
+                            </div>
+                            <div class="check-item color-item color-check">
+                                <span class="color bg-dusty-olive"></span>
+                                <span class="color-text">Dusty Olive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-bottom">
+                <button id="reset-filter" class="tf-btn btn-reset">Reset Filters</button>
+            </div>
         </div>
+    </div>
+    <!-- /Filter Shop -->
+   
 
-        <div class="row">
-          <div class="col-sm-6 text-start">{{ pagination }}</div>
-          <div class="col-sm-6 text-end">{{ results }}</div>
-        </div>
-      {% endif %}
-      {% if not categories and not products %}
-        <p>{{ text_no_results }}</p>
-        <div class="text-end"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
-      {% endif %}
-      {{ content_bottom }}</div>
-    {{ column_right }}</div>
-</div>
 {{ footer }}

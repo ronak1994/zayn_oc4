@@ -36,7 +36,7 @@
 :root {
   --white: #ffffff;
   --black: #000000;
-  --primary: #C8102E;
+  --primary: #241B68;
   --secondary: #D7EB3A;
   --third: rgba(44, 129, 83, 1);
   --text: #5F615E;
@@ -55,7 +55,7 @@
   --bg-7: #EC6E1A;
   --bg-8: #FAFAFA;
   --bg-9: #F6F4F1;
-  --bg-10: #C8102E12;
+  --bg-10: #241B6812;
   --bg-11: #EEDFC6;
   --bg-12: #F7F7F7;
   --bg-13: #F8F8F8;
@@ -84,7 +84,7 @@
 }
 
 .primary {
-  --primary: #C8102E;
+  --primary: #241B68;
 }
 
 .primary-2 {
@@ -954,7 +954,7 @@ a {
   cursor: pointer;
   display: inline-block;
   font-family: "Afacad", sans-serif;
-  color: var(--black);
+  color: var(--primary);
 }
 a:focus, a:hover {
   text-decoration: none;
@@ -991,7 +991,7 @@ a:focus, a:hover {
   transition: all 0.3s ease;
 }
 .link-black:hover {
-  color: var(--black) !important;
+  color: var(--primary) !important;
 }
 
 .link-purple {
@@ -2020,7 +2020,7 @@ header.header-sticky {
   display: block;
   width: 18px;
   height: 2px;
-  background-color: var(--black);
+  background-color: var(--primary);
   border-radius: 5px;
 }
 .btn-mobile-menu::after, .btn-mobile-menu::before {
@@ -2028,7 +2028,7 @@ header.header-sticky {
   position: absolute;
   width: 18px;
   height: 2px;
-  background-color: var(--black);
+  background-color: var(--primary);
   border-radius: 1px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -4165,7 +4165,7 @@ header.header-sticky {
   line-height: 24px;
   padding: 16px 40px;
   position: relative;
-  background-color: var(--black);
+  background-color: var(--primary);
   color: var(--white);
   border-radius: 999px;
   font-weight: 600;
@@ -4370,7 +4370,6 @@ button.animate-btn::after,
   right: 0;
   bottom: 3px;
   height: 1px;
-  background-color: var(--black);
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -9655,7 +9654,6 @@ input[type=number]::-webkit-outer-spin-button {
 .card-product {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -10323,7 +10321,7 @@ input[type=number]::-webkit-outer-spin-button {
   gap: 0px 10px;
 }
 .price-wrap .price-new {
-  color: var(--black);
+  color: #666;
   font-weight: 600;
 }
 .price-wrap .price-old {
@@ -19525,7 +19523,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 .tb-order_status.stt-cancel {
   background: rgba(200, 16, 46, 0.0509803922);
-  color: #C8102E;
+  color: #241B68;
 }
 
 .form-change_pass {
@@ -20440,3 +20438,36 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     margin-top: -10px;
     margin-left: -10px;
 }
+
+.card-product_info .name-product{
+  font-size: 18px;
+}
+
+.card-product{
+  text-align: center;
+}
+
+.product-color_list{
+  width: 100px;
+  margin: auto;
+}
+
+.price-old{
+  display: none !important;
+}
+
+.card-product_info{
+  margin-top: -60px;
+}
+
+.btn-outline{
+  background-color: var(--white);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn-outline:hover{
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+

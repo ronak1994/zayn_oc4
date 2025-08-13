@@ -297,14 +297,14 @@ class Banner extends \Opencart\System\Engine\Controller {
 
 		$post_info = $this->request->post + $required;
 
-		if (!oc_validate_length($post_info['name'], 3, 64)) {
+		if (!oc_validate_length($post_info['name'], 3, 2064)) {
 			$json['error']['name'] = $this->language->get('error_name');
 		}
 
 		if (isset($post_info['banner_image'])) {
 			foreach ($post_info['banner_image'] as $language_id => $banner_image) {
 				foreach ($banner_image as $key => $value) {
-					if (!oc_validate_length($value['title'], 2, 64)) {
+					if (!oc_validate_length($value['title'], 2, 2064)) {
 						$json['error']['image_' . $language_id . '_' . $key . '_title'] = $this->language->get('error_title');
 					}
 				}

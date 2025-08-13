@@ -1,40 +1,64 @@
-<div class="product-thumb">
-  <div class="image"><a href="{{ href }}"><img src="{{ thumb }}" alt="{{ name }}" title="{{ name }}" class="img-fluid"/></a></div>
-  <div class="content">
-    <div class="description">
-      <h4><a href="{{ href }}">{{ name }}</a></h4>
-      <p>{{ description }}</p>
-      {% if price %}
-        <div class="price">
-          {% if not special %}
-            <span class="price-new">{{ price }}</span>
-          {% else %}
-            <span class="price-new">{{ special }}</span> <span class="price-old">{{ price }}</span>
-          {% endif %}
-          {% if tax %}
-            <span class="price-tax">{{ text_tax }} {{ tax }}</span>
-          {% endif %}
-        </div>
-      {% endif %}
-      {% if review_status and rating %}
-        <div class="rating">
-          {% for i in 1..5 %}
-            {% if rating < i %}
-              <span class="fa-stack"><i class="fa-regular fa-star fa-stack-1x"></i></span>
-            {% else %}
-              <span class="fa-stack"><i class="fa-solid fa-star fa-stack-1x"></i><i class="fa-regular fa-star fa-stack-1x"></i></span>
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    <form method="post" data-oc-toggle="ajax" data-oc-load="{{ cart }}" data-oc-target="#cart">
-      <div class="button">
-        <button type="submit" formaction="{{ cart_add }}" data-bs-toggle="tooltip" title="{{ button_cart }}"><i class="fa-solid fa-shopping-cart"></i></button>
-        <button type="submit" formaction="{{ wishlist_add }}" data-bs-toggle="tooltip" title="{{ button_wishlist }}" ><i class="fa-solid fa-heart"></i></button>
-        <button type="submit" formaction="{{ compare_add }}" data-bs-toggle="tooltip" title="{{ button_compare }}"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-      </div>
-      <input type="hidden" name="product_id" value="{{ product_id }}"/> <input type="hidden" name="quantity" value="{{ minimum }}"/>
-    </form>
-  </div>
-</div>
+ <!-- Product 4 -->
+ <div class="card-product grid" data-availability="In stock" data-brand="automet">
+                                    <div class="card-product_wrapper">
+                                        <a href="{{ href }}" class="product-img">
+                                            <img class="lazyload img-product" src="{{ thumb }}"
+                                                data-src="{{ thumb }}" alt="Product">
+                                            <img class="lazyload img-hover" src="assets/images//products/product-8.jpg"
+                                                data-src="assets/images//products/product-8.jpg" alt="Product">
+                                        </a>
+                                        <ul class="product-action_list">
+                                            <li>
+                                                <a href="#shoppingCart" data-bs-toggle="offcanvas" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-shopping-cart-simple"></span>
+                                                    <span class="tooltip">Add to cart</span>
+                                                </a>
+                                            </li>
+                                            <li class="wishlist">
+                                                <a href="javascript:void(0);" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#quickView" data-bs-toggle="modal" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-view"></span>
+                                                    <span class="tooltip">Quick view</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-product_info">
+                                        <a href="{{ href }}" class="name-product h4 link">{{ name }}</a>
+                                        <div class="price-wrap">
+                                            <span class="price-new h6">{{ price }}</span>
+                                        </div>
+                                        <ul class="product-color_list">
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot active">
+                                                <span class="tooltip color-filter">Pink</span>
+                                                <span class="swatch-value bg-hot-pink"></span>
+                                                <img class="lazyload" src="assets/images//products/product-7.jpg" data-src="assets/images//products/product-7.jpg"
+                                                    alt="Product">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Beige</span>
+                                                <span class="swatch-value bg-light-beige"></span>
+                                                <img class="lazyload" src="assets/images//products/product-9.jpg" data-src="assets/images//products/product-9.jpg"
+                                                    alt="Product">
+
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Dusty Olive</span>
+                                                <span class="swatch-value bg-dusty-olive"></span>
+                                                <img class="lazyload" src="assets/images//products/product-11.jpg" data-src="assets/images//products/product-11.jpg"
+                                                    alt="Product">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            
+
+
+
+
+                          
